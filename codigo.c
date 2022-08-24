@@ -66,7 +66,7 @@ void inserir_elemento_ordenado(No **lista, int num){
     if(novo){
         novo->valor = num;
         if(*lista == NULL){
-            NOVO->PROXIMO = NULL;
+            novo->proximo = NULL;
             *lista = novo;
         }
         else if(novo->valor < (*lista)->valor){
