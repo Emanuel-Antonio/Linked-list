@@ -10,7 +10,7 @@ void inserir_elemento_inicio(No **lista, int num){
     No *novo = malloc(sizeof(No));
     if(novo){
         novo->valor = num;
-        novo->proximo = *lista
+        novo->proximo = *lista;
         *lista = novo;
     }
     else{
