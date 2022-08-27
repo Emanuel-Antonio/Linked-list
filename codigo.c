@@ -57,7 +57,7 @@ void inserir_elemento_meio(No **lista, int num, int ant){
         }
     }
     else{
-        printf("Erro ao alocar memoria\n")
+        printf("Erro ao alocar memoria\n");
     }
 }
 
