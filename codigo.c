@@ -8,7 +8,7 @@ typedef struct no{
 
 void inserir_elemento_inicio(No **lista, int num){
     No *novo = malloc(sizeof(No));
-    if(novo){
+    if(novo != NULL){
         novo->valor = num;
         novo->proximo = *lista;
         *lista = novo;
@@ -20,7 +20,7 @@ void inserir_elemento_inicio(No **lista, int num){
 
 void inserir_elemento_final(No **lista, int num){
     No *aux, *novo = malloc(sizeof(No));
-    if(novo){
+    if(novo != NULL){
         novo->valor = num;
         novo->proximo = NULL;
         if(*lista == NULL){
@@ -41,7 +41,7 @@ void inserir_elemento_final(No **lista, int num){
 
 void inserir_elemento_meio(No **lista, int num, int ant){
     No *aux, *novo = malloc(sizeof(No));
-    if(novo){
+    if(novo != NULL){
         novo->valor = num;
         if(*lista == NULL){
             novo->proximo = NULL;
@@ -63,7 +63,7 @@ void inserir_elemento_meio(No **lista, int num, int ant){
 
 void inserir_elemento_ordenado(No **lista, int num){
     No *aux, *novo = malloc(sizeof(No));
-    if(novo){
+    if(novo != NULL){
         novo->valor = num;
         if(*lista == NULL){
             novo->proximo = NULL;
