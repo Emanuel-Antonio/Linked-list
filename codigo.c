@@ -125,7 +125,7 @@ int main()
     No *lista = NULL;
 
     do{
-        printf("\n\t0 - sair\n\t1 - inserirI\n\t2 - inserirM\n\t3 - inserirF\n\t4 - imprimir\n\t");
+        printf("\n\t0 - sair\n\t1 - inserirI\n\t2 - inserirM\n\t3 - inserirF\n\t4 - imprimir\n\t5 - inserir ordenado\n\t");
         scanf("%d", &opcao);
 
         switch(opcao){
@@ -147,6 +147,11 @@ int main()
             case 4:
                 imprimir(lista);
                 break;
+            case 5:
+                printf("Digite um valor: ");
+                scanf("%d", &valor);
+                inserir_elemento_ordenado(&lista,valor);
+                break;
             default:
                 if(opcao != 0){
                     printf("opção invalida!");
@@ -154,9 +159,6 @@ int main()
         }
     }
     while(opcao!=0);
-
-
-    // inserir_elemento_ordenado(&lista,valor);
 
     return 0;
 }
