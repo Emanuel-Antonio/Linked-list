@@ -110,55 +110,100 @@ void inserir_elemento_ordenado(No **lista, int num)
     }
 }
 
-void imprimir(No *lista){
+void imprimir(No *lista)
+{
     printf("\nLista: ");
-    while(lista){
+    while (lista)
+    {
         printf("%d ", lista->valor);
         lista = lista->proximo;
     }
     printf("\n\n");
-
 }
+
+No *retirar(No **lista, int num)
+{
+    No *aux, *remover = NULL;
+    if (*lista)
+    {
+        if ((*lista)->valor == num)
+        {
+            remover = *lista;
+            *lista = remover->proximo;
+        }
+        else
+        {
+            aux = *lista;
+            while (aux->proximo && aux->proximo->valor != num)
+            {
+                aux = aux->proximo;
+            }
+            if (aux->proximo)
+            {
+                remover = aux->proximo;
+                aux->proximo = remover->proximo;
+            }
+        }
+    }
+    return remover;
+}
+
 int main()
 {
     int valor, ant, opcao;
-    No *lista = NULL;
+    No *remover, *lista = NULL;
 
-    do{
-        printf("\n\t0 - sair\n\t1 - inserirI\n\t2 - inserirM\n\t3 - inserirF\n\t4 - imprimir\n\t5 - inserir ordenado\n\t");
+    do
+    {
+        printf("\n\t0 - sair\n\t1 - inserirI\n\t2 - inserirM\n\t3 - inserirF\n\t4 - imprimir\n\t5 - inserir ordenado\n\t6 - remover\n\t");
         scanf("%d", &opcao);
 
-        switch(opcao){
-            case 1:
-                printf("Digite um valor: ");
-                scanf("%d", &valor);
-                inserir_elemento_inicio(&lista,valor);
-                break;
-            case 2:
-                printf("Digite um valor e o valor de referencia: ");
-                scanf("%d%d", &valor, &ant);
-                inserir_elemento_meio(&lista,valor,ant);
-                break;
-            case 3:
-                printf("Digite um valor: ");
-                scanf("%d", &valor);
-                inserir_elemento_final(&lista,valor);
-                break;
-            case 4:
-                imprimir(lista);
-                break;
-            case 5:
-                printf("Digite um valor: ");
-                scanf("%d", &valor);
-                inserir_elemento_ordenado(&lista,valor);
-                break;
-            default:
-                if(opcao != 0){
-                    printf("opção invalida!");
-                }
+        switch (opcao)
+        {
+        case 1:
+            printf("Digite um valor: ");
+            scanf("%d", &valor);
+            inserir_elemento_inicio(&lista, valor);
+            break;
+        case 2:
+            printf("Digite um valor e o valor de referencia: ");
+            scanf("%d%d", &valor, &ant);
+            inserir_elemento_meio(&lista, valor, ant);
+            break;
+        case 3:
+            printf("Digite um valor: ");
+            scanf("%d", &valor);
+            inserir_elemento_final(&lista, valor);
+            break;
+        case 4:
+            imprimir(lista);
+            break;
+        case 5:
+            printf("Digite um valor: ");
+            scanf("%d", &valor);
+            inserir_elemento_ordenado(&lista, valor);
+            break;
+        case 6:
+            printf("Digite um valor a ser removido: ");
+            scanf("%d", &valor);
+            remover = retirar(&lista, valor);
+            if (remover)
+            {
+                printf("Elemento a ser removido: %d\n", remover->valor);
+                free(remover);
+            }
+            else
+            {
+                printf("elemento inexistente!");
+            }
+            break;
+        default:
+            if (opcao != 0)
+            {
+                printf("opção invalida!");
+            }
         }
-    }
-    while(opcao!=0);
+    } while (opcao != 0);
 
     return 0;
 }
