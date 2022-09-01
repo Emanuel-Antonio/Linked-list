@@ -148,6 +148,18 @@ No *retirar(No **lista, int num)
     return remover;
 }
 
+No* buscar(No **lista, int num){
+    No *aux, *no = NULL;
+    aux = * lista;
+    while(aux && aux->valor != num){
+        aux = aux->proximo;
+    }
+    if(aux){
+        no = aux;
+    }
+    return no;
+}
+
 int main()
 {
     int valor, ant, opcao;
@@ -155,7 +167,7 @@ int main()
 
     do
     {
-        printf("\n\t0 - sair\n\t1 - inserirI\n\t2 - inserirM\n\t3 - inserirF\n\t4 - imprimir\n\t5 - inserir ordenado\n\t6 - remover\n\t");
+        printf("\n\t0 - sair\n\t1 - inserirI\n\t2 - inserirM\n\t3 - inserirF\n\t4 - imprimir\n\t5 - inserir ordenado\n\t6 - remover\n\t7 - buscar\n\t");
         scanf("%d", &opcao);
 
         switch (opcao)
@@ -195,6 +207,17 @@ int main()
             else
             {
                 printf("elemento inexistente!");
+            }
+            break;
+        case 7:
+            printf("Digite um valor a ser buscado: ");
+            scanf("%d", &valor);
+            remover = buscar(&lista, valor);
+            if(remover){
+                printf("Opção invalida!\n");
+            }
+            else{
+                printf("Elemento não encontrado");
             }
             break;
         default:
