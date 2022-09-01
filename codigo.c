@@ -110,16 +110,51 @@ void inserir_elemento_ordenado(No **lista, int num)
     }
 }
 
+void imprimir(No *lista){
+    printf("\nLista: ");
+    while(lista){
+        printf("%d ", lista->valor);
+        lista = lista->proximo;
+    }
+    printf("\n\n");
+
+}
 int main()
 {
-    int valor, ant;
+    int valor, ant, opcao;
     No *lista = NULL;
 
-    // inserir_elemento_inicio(&lista,valor);
+    do{
+        printf("\n\t0 - sair\n\t1 - inserirI\n\t2 - inserirM\n\t3 - inserirF\n\t4 - imprimir\n\t");
+        scanf("%d", &opcao);
 
-    // inserir_elemento_final(&lista,valor);
+        switch(opcao){
+            case 1:
+                printf("Digite um valor: ");
+                scanf("%d", &valor);
+                inserir_elemento_inicio(&lista,valor);
+                break;
+            case 2:
+                printf("Digite um valor e o valor de referencia: ");
+                scanf("%d%d", &valor, &ant);
+                inserir_elemento_meio(&lista,valor,ant);
+                break;
+            case 3:
+                printf("Digite um valor: ");
+                scanf("%d", &valor);
+                inserir_elemento_final(&lista,valor);
+                break;
+            case 4:
+                imprimir(lista);
+                break;
+            default:
+                if(opcao != 0){
+                    printf("opção invalida!");
+                }
+        }
+    }
+    while(opcao!=0);
 
-    // inserir_elemento_meio(&lista,valor,ant);
 
     // inserir_elemento_ordenado(&lista,valor);
 
