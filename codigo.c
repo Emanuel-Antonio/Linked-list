@@ -4,6 +4,7 @@
 typedef struct no
 {
     int valor;
+    int prioridade;
     struct no *proximo;
 } No;
 
@@ -63,7 +64,7 @@ void inserir_elemento_meio(No **lista, int num, int ant)
         else
         {
             aux = *lista;
-            while (aux->valor != ant && aux->proximo)
+            while (aux->prioridade != ant && aux->proximo)
             {
                 aux = aux->proximo;
             }
@@ -160,14 +161,60 @@ No* buscar(No **lista, int num){
     return no;
 }
 
+void inserir_elemento_ordenado_por__nivel_prioridade(No **lista, int num, int prioridade)
+{
+    No *aux, *novo = malloc(sizeof(No));
+    int ant;
+    if (novo != NULL)
+    {
+        ant = prioridade;
+        novo->valor = num;
+        novo->prioridade = prioridade;
+        if (*lista == NULL)
+        {
+            novo->proximo = NULL;
+            *lista = novo;
+        }
+        else if (novo->prioridade > (*lista)->prioridade)
+        {
+            novo->proximo = *lista;
+            *lista = novo;
+        }
+        else
+        {
+            aux = *lista;
+            while (aux->proximo && aux->proximo->prioridade >= ant)
+            {
+                aux = aux->proximo;
+            }
+            novo->proximo = aux->proximo;
+            aux->proximo = novo;
+        }
+    }
+    else
+    {
+        printf("Erro ao alocar memoria");
+    }
+}
+
+void pop_left(No **lista)
+{
+    if(*lista != NULL){
+        No *descarte = malloc(sizeof(No));
+        descarte = *lista;
+        *lista = (*lista)->proximo;
+        free(descarte);
+    }
+}
+
 int main()
 {
-    int valor, ant, opcao;
+    int valor, ant, opcao, prioridade;
     No *remover, *lista = NULL;
 
     do
     {
-        printf("\n\t0 - sair\n\t1 - inserirI\n\t2 - inserirM\n\t3 - inserirF\n\t4 - imprimir\n\t5 - inserir ordenado\n\t6 - remover\n\t7 - buscar\n\t");
+        printf("\n\t0 - sair\n\t1 - inserirI\n\t2 - inserirM\n\t3 - inserirF\n\t4 - imprimir\n\t5 - inserir ordenado\n\t6 - remover\n\t7 - buscar\n\t8 - inserir por prioridade\n\t9 - pop_left\n\t");
         scanf("%d", &opcao);
 
         switch (opcao)
@@ -219,6 +266,14 @@ int main()
             else{
                 printf("Elemento não encontrado");
             }
+            break;
+        case 8:
+            printf("Digite o codigo do paciente e o seu nivel de priodirade nessa sequencia: ");
+            scanf("%d%d", &valor, &prioridade);
+            inserir_elemento_ordenado_por__nivel_prioridade(&lista, valor, prioridade);
+            break;
+        case 9:
+            pop_left(&lista);
             break;
         default:
             if (opcao != 0)
