@@ -207,6 +207,26 @@ void pop_left(No **lista)
     }
 }
 
+void remover_final(No **lista)
+{
+    if(*lista != NULL){
+        No *remover, *aux = malloc(sizeof(No));
+        if((*lista)->proximo == NULL){
+            remover = *lista;
+            *lista = (*lista)->proximo;
+        }
+        else{
+            aux = *lista;
+            while(aux->proximo->proximo != NULL){
+                aux = aux->proximo;
+            }
+            remover = aux->proximo;
+            aux->proximo = aux->proximo->proximo;
+        }
+        free(remover);
+    }
+}
+
 int main()
 {
     int valor, ant, opcao, prioridade;
@@ -274,6 +294,9 @@ int main()
             break;
         case 9:
             pop_left(&lista);
+            break;
+        case 10:
+            remover_final(&lista);
             break;
         default:
             if (opcao != 0)
