@@ -234,7 +234,7 @@ int main()
 
     do
     {
-        printf("\n\t0 - sair\n\t1 - inserirI\n\t2 - inserirM\n\t3 - inserirF\n\t4 - imprimir\n\t5 - inserir ordenado\n\t6 - remover\n\t7 - buscar\n\t8 - inserir por prioridade\n\t9 - pop_left\n\t");
+        printf("\n\t0 - sair\n\t1 - inserirI\n\t2 - inserirM\n\t3 - inserirF\n\t4 - imprimir\n\t5 - inserir ordenado\n\t6 - remover\n\t7 - buscar\n\t8 - inserir por prioridade\n\t9 - pop_left\n\t10 - remover do final\n\t);
         scanf("%d", &opcao);
 
         switch (opcao)
